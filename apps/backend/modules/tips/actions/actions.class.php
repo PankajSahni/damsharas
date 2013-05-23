@@ -84,9 +84,7 @@ class tipsActions extends sfActions
 			$extension = $image->getExtension($image->getOriginalExtension());
 			
                         $image_name = $tip_id.$extension;
-                        echo move_uploaded_file($temp_name, sfConfig::get('sf_upload_dir').'/'.$image_name);
-                        //$request->moveFile('file', sfConfig::get('sf_upload_dir').'/'.$image_name);
-                        
+                        move_uploaded_file($temp_name, sfConfig::get('sf_upload_dir').'/'.$image_name);
                         $q = Doctrine_Query::create()
 				->update('Tips a')
 				->set('a.image', '?', $image_name)
