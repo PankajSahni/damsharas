@@ -5,3 +5,4 @@ log/*
 /nbproject/*
 nbproject/project.xml
 .DS_Store
+web/.htaccess
