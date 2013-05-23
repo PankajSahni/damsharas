@@ -1,0 +1,7 @@
+cache/*
+log/*
+/config/ProjectConfiguration.class.php
+/config/databases.yml
+/nbproject/*
+nbproject/project.xml
+.DS_Store
