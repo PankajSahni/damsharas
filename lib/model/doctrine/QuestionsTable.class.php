@@ -16,4 +16,16 @@ class QuestionsTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Questions');
     }
+    public function getAllQuestions() {
+        $question_data = $this->createQuery('a')
+                ->fetchArray();
+        $data_array = array();
+
+        if (is_array($question_data) && count($question_data)) {
+            foreach ($question_data as $question) {
+                $data_array[$question['id']] = $question['question'];
+            }
+        }
+        return $data_array;
+    }
 }

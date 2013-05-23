@@ -10,6 +10,15 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Answers extends BaseAnswers
-{
+class Answers extends BaseAnswers {
+
+    public function save(Doctrine_Connection $conn = null) {
+        if ($this->isNew()) {
+            $this->setCreatedAt(date('Y-m-d H:i:s', time()));
+        }
+        $this->setUpdatedAt(date('Y-m-d H:i:s', time()));
+
+        return parent::save($conn);
+    }
+
 }

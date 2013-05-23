@@ -8,7 +8,7 @@ Answers:
       unsigned: false
       primary: true
       autoincrement: true
-    quesion_id:
+    question_id:
       type: integer(8)
       fixed: false
       unsigned: false
@@ -38,7 +38,7 @@ Answers:
       autoincrement: false
   relations:
     Questions:
-      local: quesion_id
+      local: question_id
       foreign: id
       type: one
 Questions:
@@ -75,8 +75,62 @@ Questions:
   relations:
     Answers:
       local: id
-      foreign: quesion_id
+      foreign: question_id
       type: many
+    Tips:
+      local: id
+      foreign: question_id
+      type: many
+Tips:
+  connection: doctrine
+  tableName: tips
+  columns:
+    id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    question_id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    image:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    tip:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Questions:
+      local: question_id
+      foreign: id
+      type: one
 Users:
   connection: doctrine
   tableName: users
