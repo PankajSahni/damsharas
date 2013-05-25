@@ -81,6 +81,10 @@ Questions:
       local: id
       foreign: question_id
       type: many
+    UserQuestions:
+      local: id
+      foreign: question_id
+      type: many
 Tips:
   connection: doctrine
   tableName: tips
@@ -131,6 +135,53 @@ Tips:
       local: question_id
       foreign: id
       type: one
+UserQuestions:
+  connection: doctrine
+  tableName: user_questions
+  columns:
+    id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    question_id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Questions:
+      local: question_id
+      foreign: id
+      type: one
+    Users:
+      local: user_id
+      foreign: id
+      type: one
 Users:
   connection: doctrine
   tableName: users
@@ -169,3 +220,8 @@ Users:
       primary: false
       notnull: true
       autoincrement: false
+  relations:
+    UserQuestions:
+      local: id
+      foreign: user_id
+      type: many

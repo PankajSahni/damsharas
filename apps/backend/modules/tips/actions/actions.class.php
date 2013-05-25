@@ -15,6 +15,7 @@ class tipsActions extends sfActions
     $this->tipss = Doctrine_Core::getTable('Tips')
       ->createQuery('a')
       ->execute();
+   $this->web_path = Doctrine::getTable('Tips')->str_before('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'backend');
   }
 
   public function executeShow(sfWebRequest $request)

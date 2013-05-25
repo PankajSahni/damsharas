@@ -17,7 +17,7 @@
     <tr>
       <td><a href="<?php echo url_for('tips/show?id='.$tips->getId()) ?>"><?php echo $tips->getId() ?></a></td>
       <td><?php echo $tips->getQuestionId() ?></td>
-      <td><img width="150" src="<?php echo strstr($_SERVER['HTTP_REFERER'],'backend', true).'uploads/'.$tips->getImage() ?>"/></td>
+      <td><img width="150" src="<?php echo $web_path.'uploads/'.$tips->getImage() ?>"/></td>
       <td><?php echo $tips->getTip() ?></td>
       <td><?php echo $tips->getCreatedAt() ?></td>
       <td><?php echo $tips->getUpdatedAt() ?></td>

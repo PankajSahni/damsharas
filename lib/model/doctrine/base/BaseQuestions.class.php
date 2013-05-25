@@ -13,19 +13,22 @@ Doctrine_Manager::getInstance()->bindComponent('Questions', 'doctrine');
  * @property timestamp $updated_at
  * @property Doctrine_Collection $Answers
  * @property Doctrine_Collection $Tips
+ * @property Doctrine_Collection $UserQuestions
  * 
- * @method integer             getId()         Returns the current record's "id" value
- * @method string              getQuestion()   Returns the current record's "question" value
- * @method timestamp           getCreatedAt()  Returns the current record's "created_at" value
- * @method timestamp           getUpdatedAt()  Returns the current record's "updated_at" value
- * @method Doctrine_Collection getAnswers()    Returns the current record's "Answers" collection
- * @method Doctrine_Collection getTips()       Returns the current record's "Tips" collection
- * @method Questions           setId()         Sets the current record's "id" value
- * @method Questions           setQuestion()   Sets the current record's "question" value
- * @method Questions           setCreatedAt()  Sets the current record's "created_at" value
- * @method Questions           setUpdatedAt()  Sets the current record's "updated_at" value
- * @method Questions           setAnswers()    Sets the current record's "Answers" collection
- * @method Questions           setTips()       Sets the current record's "Tips" collection
+ * @method integer             getId()            Returns the current record's "id" value
+ * @method string              getQuestion()      Returns the current record's "question" value
+ * @method timestamp           getCreatedAt()     Returns the current record's "created_at" value
+ * @method timestamp           getUpdatedAt()     Returns the current record's "updated_at" value
+ * @method Doctrine_Collection getAnswers()       Returns the current record's "Answers" collection
+ * @method Doctrine_Collection getTips()          Returns the current record's "Tips" collection
+ * @method Doctrine_Collection getUserQuestions() Returns the current record's "UserQuestions" collection
+ * @method Questions           setId()            Sets the current record's "id" value
+ * @method Questions           setQuestion()      Sets the current record's "question" value
+ * @method Questions           setCreatedAt()     Sets the current record's "created_at" value
+ * @method Questions           setUpdatedAt()     Sets the current record's "updated_at" value
+ * @method Questions           setAnswers()       Sets the current record's "Answers" collection
+ * @method Questions           setTips()          Sets the current record's "Tips" collection
+ * @method Questions           setUserQuestions() Sets the current record's "UserQuestions" collection
  * 
  * @package    damsharas
  * @subpackage model
@@ -82,6 +85,10 @@ abstract class BaseQuestions extends sfDoctrineRecord
              'foreign' => 'question_id'));
 
         $this->hasMany('Tips', array(
+             'local' => 'id',
+             'foreign' => 'question_id'));
+
+        $this->hasMany('UserQuestions', array(
              'local' => 'id',
              'foreign' => 'question_id'));
     }

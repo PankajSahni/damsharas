@@ -12,17 +12,20 @@ Doctrine_Manager::getInstance()->bindComponent('Users', 'doctrine');
  * @property string $device_token
  * @property timestamp $created_at
  * @property timestamp $updated_at
+ * @property Doctrine_Collection $UserQuestions
  * 
- * @method integer   getId()           Returns the current record's "id" value
- * @method string    getEmail()        Returns the current record's "email" value
- * @method string    getDeviceToken()  Returns the current record's "device_token" value
- * @method timestamp getCreatedAt()    Returns the current record's "created_at" value
- * @method timestamp getUpdatedAt()    Returns the current record's "updated_at" value
- * @method Users     setId()           Sets the current record's "id" value
- * @method Users     setEmail()        Sets the current record's "email" value
- * @method Users     setDeviceToken()  Sets the current record's "device_token" value
- * @method Users     setCreatedAt()    Sets the current record's "created_at" value
- * @method Users     setUpdatedAt()    Sets the current record's "updated_at" value
+ * @method integer             getId()            Returns the current record's "id" value
+ * @method string              getEmail()         Returns the current record's "email" value
+ * @method string              getDeviceToken()   Returns the current record's "device_token" value
+ * @method timestamp           getCreatedAt()     Returns the current record's "created_at" value
+ * @method timestamp           getUpdatedAt()     Returns the current record's "updated_at" value
+ * @method Doctrine_Collection getUserQuestions() Returns the current record's "UserQuestions" collection
+ * @method Users               setId()            Sets the current record's "id" value
+ * @method Users               setEmail()         Sets the current record's "email" value
+ * @method Users               setDeviceToken()   Sets the current record's "device_token" value
+ * @method Users               setCreatedAt()     Sets the current record's "created_at" value
+ * @method Users               setUpdatedAt()     Sets the current record's "updated_at" value
+ * @method Users               setUserQuestions() Sets the current record's "UserQuestions" collection
  * 
  * @package    damsharas
  * @subpackage model
@@ -83,6 +86,8 @@ abstract class BaseUsers extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasMany('UserQuestions', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
     }
 }
