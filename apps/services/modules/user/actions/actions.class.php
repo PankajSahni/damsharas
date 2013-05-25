@@ -29,7 +29,6 @@ class userActions extends sfActions {
                         ->set('u.updated_at', '?', $current_date)
                         ->where('u.email = ?', $json_data['email']);
                 $q->execute();
-                $response['MESSAGE'] = 'Welcome Back';
             } else {
                 $user = new Users();
                 $user->setEmail($json_data['email']);
@@ -37,9 +36,23 @@ class userActions extends sfActions {
                 $user->setCreatedAt($current_date);
                 $user->setUpdatedAt($current_date);
                 $user->save();
-                $response['MESSAGE'] = 'Damsharas!. Welcomes you on your first login';
             }
-            $response['STATUS'] = '1';
+            $questions_sent = Doctrine::getTable('Users')->func_getUserQuestions($json_data['email']);
+            $find_questions_notin = array();
+            if (count($questions_sent)) {
+                foreach ($questions_sent[0]['UserQuestions'] as $value) {
+                    $find_questions_notin[] = $value['question_id'];
+                }
+            }
+            $question = Doctrine::getTable('Questions')->getQuestionForUser($find_questions_notin);
+            if (count($question)) {
+                $response['QUESTION'] = $question;
+                $response['STATUS'] = '1';
+                $response['MESSAGE'] = 'Question Found';
+            } else {
+                $response['STATUS'] = '0';
+                $response['MESSAGE'] = 'No Question found.';
+            }
             $json = json_encode($response);
             return $this->renderText($json);
         }
